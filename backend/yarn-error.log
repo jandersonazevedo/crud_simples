@@ -1,0 +1,47 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add myslq
+
+PATH: 
+  C:\Program Files\PowerShell\7;C:\Users\jjand\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\jjand\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\PowerShell\7;C:\Program Files\Git\cmd;C:\Program Files (x86)\Calibre2;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\jjand\AppData\Local\Programs\Python\Python310\Scripts;C:\Users\jjand\AppData\Local\Programs\Python\Python310;C:\Users\jjand\AppData\Local\Programs\Python\Launcher;C:\Users\jjand\AppData\Local\Microsoft\WindowsApps;C:\Users\jjand\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jjand\AppData\Roaming\npm;C:\Users\jjand\AppData\Local\Yarn\bin;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\JetBrains\GoLand 2021.2.4\bin;C:\Program Files (x86)\Nmap;C:\Users\jjand\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  14.18.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/myslq: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66140:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140885:22)
+      at Request.emit (events.js:400:28)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141857:10)
+      at Request.emit (events.js:400:28)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141779:12)
+      at Object.onceWrapper (events.js:519:28)
+      at IncomingMessage.emit (events.js:412:35)
+      at endReadableNT (internal/streams/readable.js:1334:12)
+      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+
+npm manifest: 
+  {
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

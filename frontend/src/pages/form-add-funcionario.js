@@ -1,28 +1,67 @@
+import React from "react";
+import Axios from "axios";
+
 export default function AdicionarFuncionario() {
+  const [values, setValues] = React.useState();
+
+  const handleChangeValues = (value) => {
+    setValues((prevValue) => ({
+      ...prevValue,
+      [value.target.name]: value.target.value,
+    }));
+  };
+
+  const handleClickButton = () => {
+    Axios.post("http://localhost:3001/cadastrar", values)
+    .then((res) => {
+        console.log(res)
+    })
+  }
+
   return (
     <div>
       <h1>Cadastrar funcionário</h1>
       <label>
         Nome completo:
-        <input type="text" placeholder="Digite o nome completo" name="nome" />
+        <input
+          type="text"
+          placeholder="Digite o nome completo"
+          name="nome"
+          onChange={handleChangeValues}
+        />
       </label>
       <br />
 
       <label>
         E-mail:
-        <input type="email" placeholder="Digite o e-mail" name="email" />
+        <input
+          type="email"
+          placeholder="Digite o e-mail"
+          name="email"
+          onChange={handleChangeValues}
+        />
       </label>
       <br />
 
       <label>
         Telefone:
-        <input type="tel" placeholder="Digite o telefone" name="telefone" />
+        <input
+          type="tel"
+          placeholder="Digite o telefone"
+          name="telefone"
+          onChange={handleChangeValues}
+        />
       </label>
       <br />
 
       <label>
         CPF:
-        <input type="text" placeholder="Digite o CPF" name="cpf" />
+        <input
+          type="text"
+          placeholder="Digite o CPF"
+          name="cpf"
+          onChange={handleChangeValues}
+        />
       </label>
       <br />
 
@@ -32,19 +71,30 @@ export default function AdicionarFuncionario() {
           type="date"
           placeholder="Digite a data de nascimento"
           name="data_nascimento"
+          onChange={handleChangeValues}
         />
       </label>
       <br />
 
       <label>
         Endereço:
-        <input type="text" placeholder="Digite o endereço" name="enedereco" />
+        <input
+          type="text"
+          placeholder="Digite o endereço"
+          name="endereco"
+          onChange={handleChangeValues}
+        />
       </label>
       <br />
 
       <label>
         Cargo:
-        <input type="text" placeholder="Digite o cargo" name="cargo" />
+        <input
+          type="text"
+          placeholder="Digite o cargo"
+          name="cargo"
+          onChange={handleChangeValues}
+        />
       </label>
       <br />
 
@@ -54,11 +104,12 @@ export default function AdicionarFuncionario() {
           type="number"
           placeholder="Digite o salário (R$)"
           name="salario"
+          onChange={handleChangeValues}
         />
       </label>
       <br />
 
-      <button>Cadastrar</button>
+      <button onClick={() => handleClickButton()}>Cadastrar</button>
     </div>
   );
 }
