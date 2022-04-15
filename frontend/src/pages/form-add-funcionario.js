@@ -1,7 +1,7 @@
 import React from "react";
-import Axios from "axios";
+import api from "../services/api"
 
-export default function AdicionarFuncionario() {
+const FormAddFuncionario = () => {
   const [values, setValues] = React.useState();
 
   const handleChangeValues = (value) => {
@@ -12,11 +12,10 @@ export default function AdicionarFuncionario() {
   };
 
   const handleClickButton = () => {
-    Axios.post("http://localhost:3001/cadastrar", values)
-    .then((res) => {
-        console.log(res)
-    })
-  }
+    api.post("/cadastrar", values).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <div>
@@ -112,4 +111,6 @@ export default function AdicionarFuncionario() {
       <button onClick={() => handleClickButton()}>Cadastrar</button>
     </div>
   );
-}
+};
+
+export default FormAddFuncionario;

@@ -8,10 +8,10 @@ const db = mysql.createPool({
     user: "root",
     password: "",
     database: "db_supermercado",
-})
+});
 
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
 app.post("/cadastrar", (req, res) => {
     const { nome } = req.body;
@@ -27,8 +27,15 @@ app.post("/cadastrar", (req, res) => {
     db.query(SQL, [nome, email, telefone, cpf, data_nascimento, endereco, cargo, salario] , (err, res) => {
         if (err) console.log(err);
     })
-})
+});
 
+app.get("/getF", (req, res) => {
+    let SQL = "SELECT * FROM funcionarios";
+    db.query(SQL, (err, result) => {
+        if (err) console.log(err)
+        else res.send(result)
+    })
+})
 
 app.listen(3001, () => {
     console.log("rodando servidor...");
