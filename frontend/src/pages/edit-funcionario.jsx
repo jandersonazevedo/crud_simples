@@ -1,8 +1,11 @@
-import React from "react";
-import api from "../services/api"
+import api from "../services/api";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const FormAddFuncionario = () => {
-  const [values, setValues] = React.useState();
+const EditFuncionario = () => {
+  const navigate = useNavigate();
+  const params = useParams();
+  const [values, setValues] = useState(Object);
 
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
@@ -12,20 +15,29 @@ const FormAddFuncionario = () => {
   };
 
   const handleClickButton = () => {
-    api.post("/cadastrar", values).then((res) => {
+    api.put("/funcionario/editar", values).then((res) => {
       console.log(res);
     });
+    navigate("/");
   };
+
+  useEffect(() => {
+    api.get(`/funcionario/${params.id}`).then(({ data }) => {
+      setValues(data[0]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
-      <h1>Cadastrar funcionário</h1>
+      <h1>Editar funcionário</h1>
       <label>
         Nome completo:
         <input
           type="text"
           placeholder="Digite o nome completo"
           name="nome"
+          value={values.nome}
           onChange={handleChangeValues}
         />
       </label>
@@ -38,6 +50,7 @@ const FormAddFuncionario = () => {
           placeholder="Digite o e-mail"
           name="email"
           onChange={handleChangeValues}
+          value={values.email}
         />
       </label>
       <br />
@@ -49,6 +62,7 @@ const FormAddFuncionario = () => {
           placeholder="Digite o telefone"
           name="telefone"
           onChange={handleChangeValues}
+          value={values.telefone}
         />
       </label>
       <br />
@@ -60,6 +74,7 @@ const FormAddFuncionario = () => {
           placeholder="Digite o CPF"
           name="cpf"
           onChange={handleChangeValues}
+          value={values.cpf}
         />
       </label>
       <br />
@@ -71,6 +86,7 @@ const FormAddFuncionario = () => {
           placeholder="Digite a data de nascimento"
           name="data_nascimento"
           onChange={handleChangeValues}
+          value={values.data_nascimento}
         />
       </label>
       <br />
@@ -82,6 +98,7 @@ const FormAddFuncionario = () => {
           placeholder="Digite o endereço"
           name="endereco"
           onChange={handleChangeValues}
+          value={values.endereco}
         />
       </label>
       <br />
@@ -93,6 +110,7 @@ const FormAddFuncionario = () => {
           placeholder="Digite o cargo"
           name="cargo"
           onChange={handleChangeValues}
+          value={values.cargo}
         />
       </label>
       <br />
@@ -104,13 +122,14 @@ const FormAddFuncionario = () => {
           placeholder="Digite o salário (R$)"
           name="salario"
           onChange={handleChangeValues}
+          value={values.salario}
         />
       </label>
       <br />
 
-      <button onClick={() => handleClickButton()}>Cadastrar</button>
+      <button onClick={() => handleClickButton()}>Salvar alterações</button>
     </div>
   );
 };
 
-export default FormAddFuncionario;
+export default EditFuncionario;

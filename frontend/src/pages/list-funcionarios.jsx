@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ListFuncionarios = () => {
 
     const [funcionarios, setFuncionarios] = useState([]);
     useEffect(() => {
-        api.get("/getF")
+        api.get("/funcionarios")
         .then(({data}) => {setFuncionarios(data)})
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -22,6 +23,7 @@ const ListFuncionarios = () => {
           <th>Endereço</th>
           <th>Cargo</th>
           <th>Salário (R$) </th>
+          <th>Ações</th>
       
         {funcionarios?.map((funcionario) => (
           <tr>
@@ -33,6 +35,7 @@ const ListFuncionarios = () => {
             <td>{funcionario.endereco}</td>
             <td>{funcionario.cargo}</td>
             <td>{funcionario.salario}</td>
+            <td><Link to={`funcionario/editar/${funcionario.id_funcionario}`} key={funcionario.id_funcionario} >Editar</Link></td>
           </tr>
         ))}
         </table>
