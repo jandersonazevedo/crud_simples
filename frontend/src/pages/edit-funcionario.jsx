@@ -29,8 +29,10 @@ const EditFuncionario = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Editar funcionário</h1>
+    <div className="form-container">
+    <div className="formulario">
+      <h3>Editar funcionário</h3>
+      <hr className="linha-separadora"/>
       <label>
         Nome completo:
         <input
@@ -128,6 +130,7 @@ const EditFuncionario = () => {
       <br />
 
       <button onClick={() => handleClickButton()}>Salvar alterações</button>
+    </div>
     </div>
   );
 };

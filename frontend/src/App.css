@@ -1,4 +1,44 @@
 *{
   padding: 0px;
-  margin: 3px;
+  margin: 0px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background-color: #555;
+}
+
+#NavBar{
+  background-color: #000;
+  padding: 10px 15px;
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  text-decoration: none;
+}
+
+.logo > span {
+  color: #fff;
+  margin: 6px 0px 0px 10px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: -apple-system, Roboto;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: white;
+  background-color: #BF1600;
+  padding: 8px;
+  margin: 0px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.links-nav {
+  display: flex;
+  width: 100%;
+  justify-content: right;
 }

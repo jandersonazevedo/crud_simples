@@ -6,42 +6,59 @@ import { Link, useNavigate } from "react-router-dom";
 const ListFuncionarios = () => {
   const navigate = useNavigate();
   const [funcionarios, setFuncionarios] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchFuncionario = useCallback(() => {
-    api.get("/funcionarios").then(({ data }) => {
-      setFuncionarios(data);
-    });
-    console.log("teste")
+    setLoading(true);
+    api
+      .get("/funcionarios")
+      .then(({ data }) => {
+        setFuncionarios(data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
+
+    console.log("teste");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[funcionarios]); 
+  }, [funcionarios]);
 
-  
   const deletarFuncionario = (id_funcionario, nome) => {
-    if (window.confirm(`Tem certeza que deseja deletar o funcionário ${nome} ?`) ){
-      api.delete(`/funcionario/deletar/${id_funcionario}`);
-      fetchFuncionario();
+    if (
+      window.confirm(`Tem certeza que deseja deletar o funcionário ${nome} ?`)
+    ) {
+      setLoading(true);
+      api
+        .delete(`/funcionario/deletar/${id_funcionario}`)
+        .then(setFuncionarios)
+        .catch((err) => console.log(err))
+        .finaly(() => {
+          setLoading(false);
+          navigate("/");
+        });
     }
-
   };
-  
+
   useEffect(() => {
     fetchFuncionario();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [loading]);
 
   return (
-    <div>
-      <table border="1">
-        <th>Nome</th>
-        <th>E-mail</th>
-        <th>Telefone</th>
-        <th>CPF</th>
-        <th>Data de nascimento</th>
-        <th>Endereço</th>
-        <th>Cargo</th>
-        <th>Salário (R$) </th>
-        <th>Ações</th>
+    <div className="table-container">
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>CPF</th>
+          <th>Data de nascimento</th>
+          <th>Endereço</th>
+          <th>Cargo</th>
+          <th>Salário (R$) </th>
+          <th>Ações</th>
+        </tr>
 
         {funcionarios?.map((funcionario) => (
           <tr>
@@ -55,13 +72,19 @@ const ListFuncionarios = () => {
             <td>{funcionario.salario}</td>
             <td>
               <Link
+                className="btn-editar"
                 to={`funcionario/editar/${funcionario.id_funcionario}`}
-                key={funcionario.id_funcionario}
               >
                 Editar
               </Link>
               <button
-                onClick={() => {deletarFuncionario(funcionario.id_funcionario, funcionario.nome)}}
+                className="btn-deletar"
+                onClick={() => {
+                  deletarFuncionario(
+                    funcionario.id_funcionario,
+                    funcionario.nome
+                  );
+                }}
               >
                 Deletar
               </button>
